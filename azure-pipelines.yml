@@ -24,9 +24,19 @@ steps:
 - task: Npm@1
   inputs:
     command: 'install'
+    
 - task: TfxInstaller@3
   inputs:
     version: 'v0.9.x'
+
+- task: PowerShell@2
+  displayName: Copy appsettings.json
+  inputs:
+    targetType: 'inline'
+    script: |
+      Get-ChildItem env:* | ForEach-Object {
+            Write-Host ("Variable {0}: {1}" -f $_.Name, $_.Value) 
+      }
 
 - task: PowerShell@2
   displayName: 'Build Test'
