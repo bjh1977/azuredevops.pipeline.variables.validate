@@ -12,6 +12,9 @@ pr:
     include:
     - main
 
+variables:
+  group: Azure-Devops-Extensions-Variables-Validate
+
 name: $(BuildID)
 
 pool:
@@ -31,7 +34,7 @@ steps:
   displayName: 'Build Test'
   inputs:
     filePath: 'build.ps1'
-    arguments: '-Config Test -VersionMinor $(VersionMinor) -VersionPatch $(Build.BuildNumber) -Clean $True'
+    arguments: '-Config Test -VersionMajor $(VersionMajor) -VersionMinor $(VersionMinor) -VersionPatch $(Build.BuildNumber) -Clean $True'
     pwsh: true
 
 - task: CopyFiles@2
@@ -47,7 +50,7 @@ steps:
   displayName: 'Build Prod'
   inputs:
     filePath: 'build.ps1'
-    arguments: '-Config Prod -VersionMinor $(VersionMinor) -VersionPatch $(Build.BuildNumber) -Clean $False'
+    arguments: '-Config Prod -VersionMajor $(VersionMajor) -VersionMinor $(VersionMinor) -VersionPatch $(Build.BuildNumber) -Clean $False'
     pwsh: true
 
 - task: CopyFiles@2
@@ -70,7 +73,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      $files = get-childitem DataThirstLtd.dataThirstTesting*.vsix
+      $files = get-childitem bjh1977.validateVariablesTasksTesting*.vsix
       $filename = $files.name
       &tfx extension publish --vsix $filename --token $(Token) --share-with bjh-consulting --auth-type pat
     pwsh: true
