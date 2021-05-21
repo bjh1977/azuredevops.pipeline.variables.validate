@@ -1,6 +1,6 @@
 {
     "id": "a5f2314b-709a-4cab-9056-e87794c463d1",
-    "name": "validateVariablesTask",
+    "name": "validateVariablesTaskTest",
     "friendlyName": "Validate Variables Are Resolved - TEST",
     "description": "Checks for unresolved variable values - TEST",
     "helpMarkDown": "Errors or Warns if any variables values are unresolved, such as `Number$(NumberVariable)` - TEST",
@@ -18,8 +18,8 @@
     "instanceNameFormat": "Validate Variables",
     "groups": [
         {
-            "name":"Security",
-            "displayName":"Security",
+            "name":"Behavior",
+            "displayName":"Behavior",
             "isExpanded":true
         }
     ],
@@ -30,7 +30,7 @@
             "label":"Warn Or Error",
             "required":true,
             "defaultValue":"Error",
-            "groupName": "Security",
+            "groupName": "Behavior",
             "options": {
                 "Warn":"warn",
                 "Error":"error"

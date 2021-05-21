@@ -18,8 +18,8 @@
     "instanceNameFormat": "Validate Variables",
     "groups": [
         {
-            "name":"Security",
-            "displayName":"Security",
+            "name":"Behavior",
+            "displayName":"Behavior",
             "isExpanded":true
         }
     ],
@@ -30,7 +30,7 @@
             "label":"Warn Or Error",
             "required":true,
             "defaultValue":"Error",
-            "groupName": "Security",
+            "groupName": "Behavior",
             "options": {
                 "Warn":"warn",
                 "Error":"error"
