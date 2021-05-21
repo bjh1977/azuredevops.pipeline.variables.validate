@@ -1,22 +1,20 @@
 {
     "manifestVersion": 1,
-    "id": "databricksDeployScriptsTasks",
-    "name": "Databricks Script Deployment Task by Data Thirst",
+    "id": "validateVariablesTasks",
+    "name": "Validate Variables Tasks by bjh1977",
     "version": "{FullVersion}",
-    "publisher": "DataThirstLtd",
+    "publisher": "bjh1977",
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
         }
     ],    
-    "description": "Tools for deploying Databricks scripts & other objects",
+    "description": "Azure Devops Pipeline Variable Validation",
     "tags": [
         "Extension",
         "Marketplace",
         "DevOps",
         "Deploy",
-        "Databricks",
-        "Azure",
         "Continuous Integration",
         "Continuous Delivery",
         "Build",
@@ -32,92 +30,34 @@
     },
     "repository": {
         "type": "git",
-        "uri": "https://github.com/DataThirstLtd/databricks.vsts.tools"
+        "uri": "https://github.com/bjh1977/azuredevops.pipeline.variables.validate"
     },
     "links": {
         "support": {
-          "uri": "https://github.com/DataThirstLtd/databricks.vsts.tools/issues"
+          "uri": "https://github.com/bjh1977/azuredevops.pipeline.variables.validate/issues"
         }
     },
     "icons": {
         "default": "images/logo.png"        
     },
     "screenshots": [
-        {
-            "path": "overviewimages/addingTasks.png"
-        }
+        
     ],
     "public": true,
     "files": [
         {
-            "path": "deployScriptsTask"
-        },
-        {
-            "path": "deploySecretTask"
-        },
-        {
-            "path": "deployDBFSFilesTask"
-        },
-        {
-            "path": "deployCreateBearer"
-        },
-        {
-            "path": "deployClusterTask"
-        },
-        {
-            "path": "overviewimages",
-            "addressable": true
+            "path": "validateVariablesTask"
         }
     ],
     "contributions": [
         {
-            "id": "databricksDeployScriptsTask",
+            "id": "validateVariablesTask",
             "type": "ms.vss-distributed-task.task",
             "targets": [
                 "ms.vss-distributed-task.tasks"
             ],
             "properties": {
-                "name": "deployScriptsTask"
-            }
-        },
-        {
-            "id": "databricksDeploySecretTask",
-            "type": "ms.vss-distributed-task.task",
-            "targets": [
-                "ms.vss-distributed-task.tasks"
-            ],
-            "properties": {
-                "name": "deploySecretTask"
-            }
-        },
-        {
-            "id": "databricksDeployDBFSFilesTask",
-            "type": "ms.vss-distributed-task.task",
-            "targets": [
-                "ms.vss-distributed-task.tasks"
-            ],
-            "properties": {
-                "name": "deployDBFSFilesTask"
-            }
-        },
-        {
-            "id": "databricksDeployCreateBearer",
-            "type": "ms.vss-distributed-task.task",
-            "targets": [
-                "ms.vss-distributed-task.tasks"
-            ],
-            "properties": {
-                "name": "DeployCreateBearer"
-            }
-        },
-        {
-            "id": "databricksDeployClusterTask",
-            "type": "ms.vss-distributed-task.task",
-            "targets": [
-                "ms.vss-distributed-task.tasks"
-            ],
-            "properties": {
-                "name": "DeployClusterTask"
+                "name": "validateVariablesTask"
             }
         }
     ]
