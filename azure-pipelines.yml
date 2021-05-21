@@ -78,11 +78,11 @@ steps:
     publishLocation: 'Container'
 
 - task: PowerShell@2
-  displayName: 'Publish Test Version to MarketPlace'
+  displayName: 'Publish to MarketPlace'
   inputs:
     targetType: 'inline'
     script: |
-      $files = get-childitem bjh1977.validateVariablesTasksTesting*.vsix
+      $files = get-childitem bjh1977.validateVariablesTasks*.vsix
       $filename = $files.name
 
       Write-Host "Filename is $filename, token is '$(Token)'"
