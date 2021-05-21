@@ -82,7 +82,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      $file = get-childitem bjh1977.validateVariablesTasks.vsix
+      $file = get-childitem bjh1977.validateVariablesTasks-*.vsix
       $filename = $file.name
 
       Write-Host "Filename is $filename, token is '$(Token)'"
