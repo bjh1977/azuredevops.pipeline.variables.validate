@@ -8,7 +8,7 @@ pr:
     - main
 
 variables:
-  group: Azure-Devops-Extensions-Variables-Validate
+  - group: Azure-Devops-Extensions-Variables-Validate
 
 name: $(BuildID)
 
@@ -19,13 +19,13 @@ steps:
 - task: Npm@1
   inputs:
     command: 'install'
-    
+
 - task: TfxInstaller@3
   inputs:
     version: 'v0.9.x'
 
 - task: PowerShell@2
-  displayName: Copy appsettings.json
+  displayName: Debug vars
   inputs:
     targetType: 'inline'
     script: |
