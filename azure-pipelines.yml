@@ -1,4 +1,5 @@
 trigger:
+
 - main
 - develop
 pr:
@@ -16,6 +17,10 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
+- task: validateVariablesTask@0
+  inputs:
+    warnOrError: 'Error'
+
 - task: Npm@1
   inputs:
     command: 'install'
