@@ -9,6 +9,7 @@ pr:
 
 variables:
   - group: Azure-Devops-Extensions-Variables-Validate
+  - template: azure-pipelines-vars.yml
 
 name: $(BuildID)
 

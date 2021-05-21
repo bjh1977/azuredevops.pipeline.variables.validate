@@ -1,0 +1,3 @@
+variables:
+  ThisVar1: Thiswill$(NonExistent)
+  ThisVar2: $(ThisVar1)
