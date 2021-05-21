@@ -4,13 +4,13 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+- main
 - develop
 pr:
   autoCancel: true
   branches:
     include:
-    - master
+    - main
 
 name: $(BuildID)
 
