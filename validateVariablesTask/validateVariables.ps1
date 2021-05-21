@@ -7,7 +7,9 @@ try {
     Import-VstsLocStrings "$PSScriptRoot\Task.json"
 
     # Get the inputs.
-    [string]$warnOrError = Get-VstsInput -Name $warnOrError
+    [string]$warnOrError = Get-VstsInput -Name warnOrError
+
+    Write-Host "Action on issue: $warnOrError"
 
     $UnresolvedVariables = @()
 
