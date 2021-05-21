@@ -10,7 +10,7 @@ try {
     [string]$warnOrError = Get-VstsInput -Name warnOrError
 
     Write-Host "Action on issue: $warnOrError"
-
+    $regex = '\$\(.*?\)'
     $UnresolvedVariables = @()
 
     # Get unresolved variables
