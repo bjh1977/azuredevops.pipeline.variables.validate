@@ -1,0 +1,124 @@
+{
+    "manifestVersion": 1,
+    "id": "databricksDeployScriptsTasks",
+    "name": "Databricks Script Deployment Task by Data Thirst",
+    "version": "{FullVersion}",
+    "publisher": "DataThirstLtd",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],    
+    "description": "Tools for deploying Databricks scripts & other objects",
+    "tags": [
+        "Extension",
+        "Marketplace",
+        "DevOps",
+        "Deploy",
+        "Databricks",
+        "Azure",
+        "Continuous Integration",
+        "Continuous Delivery",
+        "Build",
+        "Release"
+      ],
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "content": {
+        "details": {
+        "path": "readme.md"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/DataThirstLtd/databricks.vsts.tools"
+    },
+    "links": {
+        "support": {
+          "uri": "https://github.com/DataThirstLtd/databricks.vsts.tools/issues"
+        }
+    },
+    "icons": {
+        "default": "images/logo.png"        
+    },
+    "screenshots": [
+        {
+            "path": "overviewimages/addingTasks.png"
+        }
+    ],
+    "public": true,
+    "files": [
+        {
+            "path": "deployScriptsTask"
+        },
+        {
+            "path": "deploySecretTask"
+        },
+        {
+            "path": "deployDBFSFilesTask"
+        },
+        {
+            "path": "deployCreateBearer"
+        },
+        {
+            "path": "deployClusterTask"
+        },
+        {
+            "path": "overviewimages",
+            "addressable": true
+        }
+    ],
+    "contributions": [
+        {
+            "id": "databricksDeployScriptsTask",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "deployScriptsTask"
+            }
+        },
+        {
+            "id": "databricksDeploySecretTask",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "deploySecretTask"
+            }
+        },
+        {
+            "id": "databricksDeployDBFSFilesTask",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "deployDBFSFilesTask"
+            }
+        },
+        {
+            "id": "databricksDeployCreateBearer",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "DeployCreateBearer"
+            }
+        },
+        {
+            "id": "databricksDeployClusterTask",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "DeployClusterTask"
+            }
+        }
+    ]
+}

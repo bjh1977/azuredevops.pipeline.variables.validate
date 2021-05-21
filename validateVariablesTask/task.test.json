@@ -1,0 +1,51 @@
+{
+    "id": "a5f2314b-709a-4cab-9056-e87794c463d1",
+    "name": "validateVariablesTask",
+    "friendlyName": "Validate Variables Are Resolved - TEST",
+    "description": "Checks for unresolved variable values - TEST",
+    "helpMarkDown": "Errors or Warns if any variables values are unresolved, such as `Number$(NumberVariable)` - TEST",
+    "category": "Azure Pipelines",
+    "visibility": [
+        "Build",
+        "Release"
+    ],
+    "author": "Ben Howard",
+    "version": {
+        "Major": "{VersionMajor}",
+        "Minor": "{VersionMinor}",
+        "Patch": "{VersionPatch}"
+    },
+    "instanceNameFormat": "Validate Variables",
+    "groups": [
+        {
+            "name":"Security",
+            "displayName":"Security",
+            "isExpanded":true
+        }
+    ],
+    "inputs": [
+        {
+            "name":"warnOrError",
+            "type":"radio",
+            "label":"Warn Or Error",
+            "required":true,
+            "defaultValue":"Error",
+            "groupName": "Security",
+            "options": {
+                "Warn":"warn",
+                "Error":"error"
+            },
+            "helpMarkDown": "Warn Or Error if unresolved variables exist?"
+        }
+    ],
+    "OutputVariables": [
+    ],
+    "execution": {
+        "PowerShell3": {
+            "target": "validateVariables.ps1",
+            "platforms": [
+                "windows"
+            ]
+        }
+    }
+}
