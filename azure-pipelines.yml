@@ -78,6 +78,9 @@ steps:
     script: |
       $files = get-childitem bjh1977.validateVariablesTasksTesting*.vsix
       $filename = $files.name
+
+      Write-Host "Filename is $filename, token is '$(Token)'"
+
       &tfx extension publish --vsix $filename --token $(Token) --share-with bjh-consulting --auth-type pat
     pwsh: true
     workingDirectory: '$(build.artifactstagingdirectory)'
