@@ -1,0 +1,29 @@
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  var1: var1value
+  var2: $(var1)
+  var3: $(var99)
+
+steps:
+- task: validateVariablesTask@0
+  displayName: 'Validate Variables 1'
+  inputs:
+    varNameRegex: var1
+    varValueRegex: '\$\(.*?\)'
+    warnOrError: Warn
+- task: validateVariablesTask@0
+  displayName: 'Validate Variables 2'
+  inputs:
+    varNameRegex: var2
+    varValueRegex: '\$\(.*?\)'
+    warnOrError: Warn    
+- task: validateVariablesTask@0
+  displayName: 'Validate Variables 3'
+  inputs:
+    varNameRegex: var3
+    warnOrError: Warn        
+
+- task: validateVariablesTask@0
+  displayName: 'Validate Variables 4'
