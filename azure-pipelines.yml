@@ -25,7 +25,7 @@ steps:
   displayName: 'Test'
   inputs:
     targetType: 'inline'
-    script: Invoke-Pester
+    script: Invoke-Pester -OutputFile Test.xml -OutputFormat NUnitXml
     pwsh: true
     workingDirectory: '$(build.artifactstagingdirectory)'
 
