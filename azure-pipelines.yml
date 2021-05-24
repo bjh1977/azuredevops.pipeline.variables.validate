@@ -84,17 +84,6 @@ steps:
     publishLocation: 'Container'
 
 - task: PowerShell@2
-  displayName: 'Publish TEST VERSION to MarketPlace'
-  inputs:
-    targetType: 'inline'
-    script: |
-      $file = get-childitem bjh1977.validateVariablesTasksTesting-*.vsix
-      $filename = $file.name
-      &tfx extension publish --vsix $filename --token $(Token) --auth-type pat
-    pwsh: true
-    workingDirectory: '$(build.artifactstagingdirectory)'
-
-- task: PowerShell@2
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
   displayName: 'Publish to MarketPlace'
   inputs:
