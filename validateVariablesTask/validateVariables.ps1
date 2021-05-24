@@ -18,7 +18,7 @@ try {
     if ([string]::IsNullOrEmpty($varNameRegex)) {$varNameRegex = '.*'}
     if ([string]::IsNullOrEmpty($varValueRegex)) {$varValueRegex = '\$\(.*?\)'}
     
-    $Result = Get-EnvironmentVariable -ValueRegex $varValueRegex -Verbose   
+    $Result = Get-EnvironmentVariable -NameRegex $varNameRegex -ValueRegex $varValueRegex -Verbose   
 
     if ($null -ne $Result) {
         $Msg = ("{0} invalid variables were found" -f $Result.Count)
