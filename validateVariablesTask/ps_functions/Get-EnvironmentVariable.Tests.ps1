@@ -21,17 +21,17 @@ Describe Get-EnvironmentVariable {
     
 
     It "Returns no results when no variables match" {
-        $TestResult = Get-EnvironmentVariable -NameRegex '^DoesNotExist$'
+        $TestResult = Get-EnvironmentVariable -NameRegex '^DoesNotExist$' -ValueRegex $UnresolvedRegex
         $TestResult | Should -Be $null
     }
 
     It "Returns 1 result when 1 variable matches" {
-        $TestResult = Get-EnvironmentVariable -NameRegex '^GetEnvVarTestVar1$'
+        $TestResult = Get-EnvironmentVariable -NameRegex '^GetEnvVarTestVar1$' -ValueRegex '.*'
         $TestResult.Count | Should -Be 1
     }
 
     It "Returns 2 results when 2 variables match" {
-        $TestResult = Get-EnvironmentVariable -NameRegex '^GetEnvVarTestVar1'
+        $TestResult = Get-EnvironmentVariable -NameRegex '^GetEnvVarTestVar1'  -ValueRegex '.*'
         $TestResult.Count | Should -Be 2
     }
 
