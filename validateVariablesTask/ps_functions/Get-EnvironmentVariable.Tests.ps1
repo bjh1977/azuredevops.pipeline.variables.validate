@@ -37,8 +37,11 @@ Describe Get-EnvironmentVariable {
         $TestResult.Count | Should -Be 1
     }
 
-    It "Returns 1 result when 2 variables match 1 is unresolved" {
+    It "Returns 1 result when 2 variables match and 1 is unresolved" {
         $TestResult = Get-EnvironmentVariable -NameRegex '^GetEnvVarTestVar2' -ValueRegex $UnresolvedRegex
+
+        Write-Host "$($TestResult.Key) = $($TestResult.Value)"
+
         $TestResult.Count | Should -Be 1
     }
 
