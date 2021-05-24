@@ -11,9 +11,11 @@ try {
     [string]$varValueRegex = Get-VstsInput -Name varValueRegex
     [string]$warnOrError = Get-VstsInput -Name warnOrError
 
-    ./ps_functions/Get-EnvironmentVariable.ps1 
+    . /ps_functions/Get-EnvironmentVariable.ps1 
 
-    Write-Host "Action on issue: $warnOrError"
+    Write-Host "varNameRegex:  $varNameRegex"
+    Write-Host "varValueRegex: $varValueRegex"
+    Write-Host "warnOrError:   $warnOrError"
     
     if ([string]::IsNullOrEmpty($varNameRegex)) {$varNameRegex = '.*'}
     if ([string]::IsNullOrEmpty($varValueRegex)) {$varValueRegex = '\$\(.*?\)'}
@@ -32,6 +34,9 @@ try {
         else {
             Throw $Msg
         }
+    }
+    else {
+        Write-Host "No variables considered invalid"
     }   
 
     
