@@ -28,3 +28,4 @@ function Get-EnvironmentVariable {
     return $result
 
 }
+
