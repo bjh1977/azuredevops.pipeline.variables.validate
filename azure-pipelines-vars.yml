@@ -1,3 +1,2 @@
 variables:
-  ThisVar1: Thiswill$(NonExistent)
-  ThisVar2: $(ThisVar1)
+  - group: Azure-Devops-Extensions-Variables-Validate
