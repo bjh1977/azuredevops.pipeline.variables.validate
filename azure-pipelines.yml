@@ -17,9 +17,9 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
-- task: validateVariablesTask@0
-  inputs:
-    warnOrError: 'Error'
+#- task: validateVariablesTask@0
+#  inputs:
+#    warnOrError: 'Error'
 
 - task: PowerShell@2
   displayName: 'Test'
