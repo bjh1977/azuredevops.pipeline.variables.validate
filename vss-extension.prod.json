@@ -41,7 +41,9 @@
         "default": "images/logo.png"        
     },
     "screenshots": [
-        
+        {
+        "path": "overviewimages/add-task.png"
+        }        
     ],
     "public": true,
     "files": [
