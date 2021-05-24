@@ -25,7 +25,9 @@ steps:
   displayName: 'Test'
   inputs:
     targetType: 'inline'
-    script: Invoke-Pester -OutputFile pestertests.xml -OutputFormat NUnitXml
+    script: |
+      $container = New-PesterContainer -Path '.\validateVariablesTask\ps_functions\'
+      Invoke-Pester -Container $container -CI
     pwsh: true
     workingDirectory: '$(build.artifactstagingdirectory)'
 
@@ -33,7 +35,7 @@ steps:
   condition: always()
   inputs:
     testResultsFormat: 'NUnit'
-    testResultsFiles: '**/pestertests.xml'       
+    testResultsFiles: '**/test*.xml'   
 
 - task: Npm@1
   inputs:
