@@ -26,10 +26,10 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      $container = New-PesterContainer -Path '.\validateVariablesTask\ps_functions\'
+      $container = New-PesterContainer -Path '$(System.DefaultWorkingDirectory)'
       Invoke-Pester -Container $container -CI
     pwsh: true
-    workingDirectory: '$(build.artifactstagingdirectory)'
+    
 
 - task: PublishTestResults@2
   condition: always()
