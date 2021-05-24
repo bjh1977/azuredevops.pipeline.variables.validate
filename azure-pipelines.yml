@@ -1,7 +1,7 @@
 trigger:
-
 - main
 - develop
+- feature/*
 pr:
   autoCancel: true
   branches:
@@ -21,6 +21,20 @@ steps:
   inputs:
     warnOrError: 'Error'
 
+- task: PowerShell@2
+  displayName: 'Test'
+  inputs:
+    targetType: 'inline'
+    script: Invoke-Pester
+    pwsh: true
+    workingDirectory: '$(build.artifactstagingdirectory)'
+
+- task: PublishTestResults@2
+  condition: always()
+  inputs:
+    testResultsFormat: 'NUnit'
+    testResultsFiles: '**/test*.xml'       
+
 - task: Npm@1
   inputs:
     command: 'install'
@@ -28,15 +42,6 @@ steps:
 - task: TfxInstaller@3
   inputs:
     version: 'v0.9.x'
-
-- task: PowerShell@2
-  displayName: Debug vars
-  inputs:
-    targetType: 'inline'
-    script: |
-      Get-ChildItem env:* | ForEach-Object {
-            Write-Host ("Variable {0}: {1}" -f $_.Name, $_.Value) 
-      }
 
 - task: PowerShell@2
   displayName: 'Build Test'
@@ -77,15 +82,13 @@ steps:
     publishLocation: 'Container'
 
 - task: PowerShell@2
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
   displayName: 'Publish to MarketPlace'
   inputs:
     targetType: 'inline'
     script: |
       $file = get-childitem bjh1977.validateVariablesTasks-*.vsix
       $filename = $file.name
-
-      Write-Host "Filename is $filename, token is '$(Token)'"
-
       &tfx extension publish --vsix $filename --token $(Token) --auth-type pat
     pwsh: true
     workingDirectory: '$(build.artifactstagingdirectory)'
