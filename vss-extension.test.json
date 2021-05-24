@@ -38,7 +38,7 @@
         "path": "overviewimages/add-task.png"
         }        
     ],
-    "public": true,
+    "public": false,
     "files": [
         {
             "path": "validateVariablesTask"

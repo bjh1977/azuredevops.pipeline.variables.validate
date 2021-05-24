@@ -32,6 +32,9 @@ try {
         else {
             Throw $Msg
         }
+    }
+    else {
+        Write-Host "No variables considered invalid"
     }   
 
     
