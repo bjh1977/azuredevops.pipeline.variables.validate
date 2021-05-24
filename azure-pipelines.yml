@@ -25,7 +25,7 @@ steps:
   displayName: 'Test'
   inputs:
     targetType: 'inline'
-    script: Invoke-Pester -OutputFile Test.xml -OutputFormat NUnitXml
+    script: Invoke-Pester -OutputFile pestertests.xml -OutputFormat NUnitXml
     pwsh: true
     workingDirectory: '$(build.artifactstagingdirectory)'
 
@@ -33,7 +33,7 @@ steps:
   condition: always()
   inputs:
     testResultsFormat: 'NUnit'
-    testResultsFiles: '**/test*.xml'       
+    testResultsFiles: '**/pestertests.xml'       
 
 - task: Npm@1
   inputs:
