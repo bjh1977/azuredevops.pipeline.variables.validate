@@ -4,9 +4,10 @@ BeforeAll {
 
 Describe Get-EnvironmentVariable {
 
-    $UnresolvedRegex = '\$\(.*?\)'
+    
 
     BeforeAll {
+        $UnresolvedRegex = '\$\(.*?\)'
         $env:GetEnvVarTestVar1 = 'GetEnvVarTestVar1Value'
         $env:GetEnvVarTestVar1a = 'GetEnvVarTestVar1aValue'
         $env:GetEnvVarTestVar2 = 'GetEnvVarTestVar2Value'
