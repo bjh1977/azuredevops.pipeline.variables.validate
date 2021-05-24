@@ -25,15 +25,17 @@ steps:
   displayName: 'Test'
   inputs:
     targetType: 'inline'
-    script: Invoke-Pester
+    script: |
+      $container = New-PesterContainer -Path '$(System.DefaultWorkingDirectory)'
+      Invoke-Pester -Container $container -CI
     pwsh: true
-    workingDirectory: '$(build.artifactstagingdirectory)'
+    
 
 - task: PublishTestResults@2
   condition: always()
   inputs:
     testResultsFormat: 'NUnit'
-    testResultsFiles: '**/test*.xml'       
+    testResultsFiles: '**/test*.xml'   
 
 - task: Npm@1
   inputs:

@@ -4,9 +4,10 @@ BeforeAll {
 
 Describe Get-EnvironmentVariable {
 
-    $UnresolvedRegex = '\$\(.*?\)'
+    
 
     BeforeAll {
+        $UnresolvedRegex = '\$\(.*?\)'
         $env:GetEnvVarTestVar1 = 'GetEnvVarTestVar1Value'
         $env:GetEnvVarTestVar1a = 'GetEnvVarTestVar1aValue'
         $env:GetEnvVarTestVar2 = 'GetEnvVarTestVar2Value'
@@ -14,12 +15,14 @@ Describe Get-EnvironmentVariable {
         $env:GetEnvVarTestVar3 = 'GetEnvVarTestVar3Value$(Unresolved)-Something($Unresolved)'
     }
 
-    
+    BeforeEach {
+        $TestResult = $null
+    }
     
 
     It "Returns no results when no variables match" {
         $TestResult = Get-EnvironmentVariable -NameRegex '^DoesNotExist$'
-        $TestResult.Count | Should -Be 0
+        $TestResult | Should -Be $null
     }
 
     It "Returns 1 result when 1 variable matches" {
@@ -32,12 +35,17 @@ Describe Get-EnvironmentVariable {
         $TestResult.Count | Should -Be 2
     }
 
+    It "Returns 0 results when 1 variable matches and is resolved" {
+        $TestResult = Get-EnvironmentVariable -NameRegex '^GetEnvVarTestVar2$' -ValueRegex $UnresolvedRegex
+        $TestResult | Should -Be $null
+    }
+
     It "Returns 1 result when 1 variable matched and is unresolved" {
         $TestResult = Get-EnvironmentVariable -NameRegex '^GetEnvVarTestVar2a$' -ValueRegex $UnresolvedRegex
         $TestResult.Count | Should -Be 1
     }
 
-    It "Returns 1 result when 2 variables match 1 is unresolved" {
+    It "Returns 1 result when 2 variables match and 1 is unresolved" {
         $TestResult = Get-EnvironmentVariable -NameRegex '^GetEnvVarTestVar2' -ValueRegex $UnresolvedRegex
         $TestResult.Count | Should -Be 1
     }

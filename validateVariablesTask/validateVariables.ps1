@@ -7,20 +7,24 @@ try {
     Import-VstsLocStrings "$PSScriptRoot\Task.json"
 
     # Get the inputs.
+    [string]$varNameRegex = Get-VstsInput -Name varNameRegex
+    [string]$varValueRegex = Get-VstsInput -Name varValueRegex
     [string]$warnOrError = Get-VstsInput -Name warnOrError
 
     ./ps_functions/Get-EnvironmentVariable.ps1 
 
     Write-Host "Action on issue: $warnOrError"
-    $UnresolvedRegex = '\$\(.*?\)'
+    
+    if ([string]::IsNullOrEmpty($varNameRegex)) {$varNameRegex = '.*'}
+    if ([string]::IsNullOrEmpty($varValueRegex)) {$varValueRegex = '\$\(.*?\)'}
+    
+    $Result = Get-EnvironmentVariable -ValueRegex $varValueRegex -Verbose   
 
-    $UnresolvedVariables = Get-EnvironmentVariable -ValueRegex $UnresolvedRegex -Verbose   
+    if ($null -ne $Result) {
+        $Msg = ("{0} invalid variables were found" -f $Result.Count)
 
-    if ($null -ne $UnresolvedVariables) {
-        $Msg = ("{0} unresolved variables were found" -f $UnresolvedVariables.Count)
-
-        Write-Host "Unresolved variables:"
-        $UnresolvedVariables 
+        Write-Host "Invalid variables:"
+        $Result 
 
         if($warnOrError -eq 'warn') {
             Write-Warning $Msg
