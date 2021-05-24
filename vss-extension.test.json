@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "validateVariablesTasksTesting",
-    "name": "Validate Variables Tasks by bjh1977",
+    "name": "Validate Variables Tasks [TEST] by bjh1977",
     "version": "{FullVersion}",
     "publisher": "bjh1977",
     "targets": [
@@ -38,7 +38,7 @@
         "path": "overviewimages/add-task.png"
         }        
     ],
-    "public": true,
+    "public": false,
     "files": [
         {
             "path": "validateVariablesTask"
