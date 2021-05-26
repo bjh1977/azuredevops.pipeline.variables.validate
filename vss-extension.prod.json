@@ -49,6 +49,10 @@
     "files": [
         {
             "path": "validateVariablesTask"
+        },
+        {
+            "path": "overviewimages",
+            "addressable": true
         }
     ],
     "contributions": [
