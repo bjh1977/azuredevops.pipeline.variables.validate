@@ -29,17 +29,14 @@ foreach ($t in $tasks){
 Return
 }
 
-Function DownloadModules($TaskFolder, $ModuleName){
-$TaskModuleFolder = Join-Path $TaskFolder "\ps_modules"
+Function DownloadModules($TaskModuleFolder, $ModuleName){
 $ModuleFolder = Join-Path $TaskModuleFolder $ModuleName
 if (Test-Path -Path $ModuleFolder){
     Remove-Item $ModuleFolder -Force -Recurse
 }
-New-Item -ItemType Directory $TaskModuleFolder -Force | Out-Null
-
 Save-Module -Name $ModuleName -Path $TaskModuleFolder -Force -Confirm:$false -AllowPrerelease
 
-Get-ChildItem $TaskModuleFolder\$ModuleName\*\* | % {
+Get-ChildItem $TaskModuleFolder\$ModuleName\*\* | ForEach-Object {
     Move-Item -Path $_.FullName -Destination $TaskModuleFolder\$ModuleName\
 }
 }
@@ -48,8 +45,17 @@ setConfig $Config
 
 $Folders = Get-ChildItem -Filter 'validateVariablesTask' -Directory
 foreach ($TaskFolder in $Folders.name){
-    if ((!(Test-Path -Path (Join-Path $TaskFolder "\ps_modules\VstsTaskSDK"))) -or ($Clean)){
-        DownloadModules $TaskFolder "VstsTaskSDK"
+
+    $TaskModuleFolder = Join-Path $TaskFolder "\ps_modules"
+    New-Item -ItemType Directory $TaskModuleFolder -Force | Out-Null
+
+    if ((!(Test-Path -Path (Join-Path $TaskModuleFolder "\VstsTaskSDK"))) -or ($Clean)){
+        DownloadModules $TaskModuleFolder "VstsTaskSDK"
+    }
+
+    if ((!(Test-Path -Path (Join-Path $TaskModuleFolder "\TaskHelper"))) -or ($Clean)){
+        Remove-Item -Path (Join-Path $TaskModuleFolder "\TaskHelper") -Force -Recurse -ErrorAction SilentlyContinue
+        Copy-Item  '.\ps_modules\TaskHelper\' -Destination (Join-Path $TaskFolder "\ps_modules\TaskHelper") -Recurse -Exclude *Tests* -Force
     }
 }
 

@@ -11,7 +11,8 @@ try {
     [string]$varValueRegex = Get-VstsInput -Name varValueRegex
     [string]$warnOrError = Get-VstsInput -Name warnOrError
 
-   .\ps_functions\Get-EnvironmentVariable.ps1
+    # Import the helpers.
+    Import-Module -Name $PSScriptRoot\ps_modules\TaskHelper\taskhelper.psm1
 
     Write-Host "varNameRegex:  $varNameRegex"
     Write-Host "varValueRegex: $varValueRegex"

@@ -26,7 +26,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      $container = New-PesterContainer -Path '$(System.DefaultWorkingDirectory)'
+      $container = New-PesterContainer -Path '$(System.DefaultWorkingDirectory)/ps_modules'
       Invoke-Pester -Container $container -CI
     pwsh: true
     

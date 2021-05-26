@@ -1,10 +1,9 @@
 BeforeAll {
-    . $PSCommandPath.Replace('.Tests.ps1','.ps1')
+    Set-Location $PSScriptRoot
+    Import-Module "..\taskhelper.psd1" -Force
 }
 
-Describe Get-EnvironmentVariable {
-
-    
+Describe Get-EnvironmentVariable {    
 
     BeforeAll {
         $UnresolvedRegex = '\$\(.*?\)'
