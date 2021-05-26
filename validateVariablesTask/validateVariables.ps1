@@ -24,9 +24,9 @@ try {
     $Result = Get-EnvironmentVariable -NameRegex $varNameRegex -ValueRegex $varValueRegex -Verbose   
 
     if ($null -ne $Result) {
-        $Msg = ("{0} invalid variables were found" -f $Result.Count)
+        $Msg = ("{0} invalid variable(s) found" -f $Result.Count)
 
-        Write-Host "Invalid variables:"
+        Write-Host "Invalid variable(s):"
         $Result 
 
         if($warnOrError -eq 'warn') {
