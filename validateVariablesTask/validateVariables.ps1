@@ -21,13 +21,15 @@ try {
     if ([string]::IsNullOrEmpty($varNameRegex)) {$varNameRegex = '.*'}
     if ([string]::IsNullOrEmpty($varValueRegex)) {$varValueRegex = '\$\(.*?\)'}
     
-    $Result = Get-EnvironmentVariable -NameRegex $varNameRegex -ValueRegex $varValueRegex -Verbose   
+    $InvalidVariables = Get-EnvironmentVariable -NameRegex $varNameRegex -ValueRegex $varValueRegex -Verbose   
 
-    if ($null -ne $Result) {
-        $Msg = ("{0} invalid variable(s) found" -f $Result.Count)
+    if ($null -ne $InvalidVariables) {
+        $Msg = ("{0} invalid variable(s) found" -f $InvalidVariables.Count)
 
         Write-Host "Invalid variable(s):"
-        $Result 
+        foreach($InvalidVariable in $InvalidVariables) {
+            Write-Host ("`n{0} = {1}" -f $InvalidVariable.Name, $InvalidVariable.Value) 
+        } 
 
         if($warnOrError -eq 'warn') {
             Write-Warning $Msg

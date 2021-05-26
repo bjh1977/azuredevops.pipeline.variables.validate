@@ -22,7 +22,7 @@ function Get-EnvironmentVariable {
         }
     }
 
-    Write-Host ("SUMMARY:`n{0} variable(s) matched by name`n{1} variables matched by name and value" -f $MatchedByName.Count, $MatchedByNameAndValue.Count )
+    Write-Host ("SUMMARY:`n{0} variable(s) matched by name`n{1} variables matched by name and value and considered invalid" -f $MatchedByName.Count, $MatchedByNameAndValue.Count )
 
     return $MatchedByNameAndValue
 
